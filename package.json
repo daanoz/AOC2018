@@ -1,0 +1,25 @@
+{
+  "name": "aoc2018",
+  "version": "1.0.0",
+  "description": "AdventOfCode2018, join the fun [Advent of code](http://adventofcode.com)",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daanoz/AOC2018.git"
+  },
+  "author": "",
+  "private": true,
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/daanoz/AOC2018/issues"
+  },
+  "homepage": "https://github.com/daanoz/AOC2018#readme",
+  "dependencies": {
+    "lodash": "^4.17.4",
+    "terminal-kit": "^1.14.3"
+  }
+}
