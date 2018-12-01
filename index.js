@@ -10,7 +10,11 @@ if(!process.argv[2]) { return term.red('No day specified\n'); }
 let folder = utils.getDayPath();
 if(!fs.existsSync(folder)) { return term.red('Day %s does not exist\n', process.argv[2]); }
 
-let isPartB = process.argv[3] === 'part2';
+let isPartB = false;
+if(process.argv[3]) {
+    isPartB = process.argv[3].toLowerCase() === 'part2' || 
+              process.argv[3].toLowerCase() === 'partb';
+}
 term('Running part %s of Day %s\n\n', isPartB?'B':'A', process.argv[2]);
 
 let daySolver = require(folder);
