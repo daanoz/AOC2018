@@ -12,10 +12,13 @@ if(!fs.existsSync(folder)) { return term.red('Day %s does not exist\n', process.
 
 let isPartB = false;
 if(process.argv[3]) {
-    isPartB = process.argv[3].toLowerCase() === 'part2' || 
+    isPartB = process.argv[3].toLowerCase() === 'part2' ||
               process.argv[3].toLowerCase() === 'partb';
 }
 term('Running part %s of Day %s\n\n', isPartB?'B':'A', process.argv[2]);
 
 let daySolver = require(folder);
+let start = utils.ms();
 daySolver(isPartB);
+let duration = utils.ms() - start;
+term.green('Ran in %ss, without data loading: %ss\n', duration / 1000, (duration - utils.loadingTime()) / 1000);
