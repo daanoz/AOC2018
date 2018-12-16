@@ -81,8 +81,8 @@ module.exports = (isPartB) => {
 	term.grabInput(true);
     setTimeout( function() { term.clear(); }, 100);
     term.on( 'key' , function( name , matches , data ) {
-        if ( name === 'CTRL_C' ) { 
-            terminate() ; 
+        if ( name === 'CTRL_C' ) {
+            terminate() ;
         } else {
             tick();
         }

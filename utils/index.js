@@ -35,6 +35,19 @@ let service = {
     let day = ('0' + process.argv[2]).substr(-2);
     return path.join(process.cwd(), day);
   },
+  sleep: (ms) => {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+};
+
+const directions = {
+  left: 'LEFT',
+  right: 'RIGHT',
+  up: 'UP',
+  down: 'DOWN',
+};
+let movementService = {
+  gridOrientationSouth: true,
   moveRight: (coord) => {
     return [coord[0] + 1, coord[1]];
   },
@@ -42,11 +55,42 @@ let service = {
     return [coord[0] - 1, coord[1]];
   },
   moveUp: (coord) => {
-    return [coord[0], coord[1] + 1];
+    return [coord[0], movementService.gridOrientationSouth ? coord[1] - 1 : coord[1] + 1];
   },
   moveDown: (coord) => {
-    return [coord[0], coord[1] - 1];
-  }
+    return [coord[0], movementService.gridOrientationSouth ? coord[1] + 1 : coord[1] - 1];
+  },
+  move: (coord, direction) => {
+    switch(direction) {
+      case directions.up: return movementService.moveUp(coord);
+      case directions.down: return movementService.moveDown(coord);
+      case directions.left: return movementService.moveLeft(coord);
+      case directions.right: return movementService.moveRight(coord);
+      default: throw 'Unknown direction: ' + direction;
+    }
+  },
+  turnLeft: (direction) => {
+    switch(direction) {
+      case directions.up: return directions.left;
+      case directions.down: return directions.right;
+      case directions.left: return directions.down;
+      case directions.right: return directions.up;
+      default: throw 'Unknown direction: ' + direction;
+    }
+  },
+  turnRight: (direction) => {
+    switch(direction) {
+      case directions.up: return directions.right;
+      case directions.down: return directions.left;
+      case directions.left: return directions.up;
+      case directions.right: return directions.down;
+      default: throw 'Unknown direction: ' + direction;
+    }
+  },
+  directions: directions
 };
+
+service.movement = movementService;
+
 
 module.exports = service;
