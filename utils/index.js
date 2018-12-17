@@ -13,6 +13,8 @@ let messureDataLoading = (func) => {
 };
 
 let service = {
+  writeOutput: (data, fileName) =>
+      fs.writeFileSync (path.join(service.getDayPath(), fileName || 'output'), data, {encoding: 'utf-8'}),
   readInput: (fileName) =>
     messureDataLoading(() =>
       fs.readFileSync(path.join(service.getDayPath(), fileName || 'input'), {encoding: 'utf-8'})
