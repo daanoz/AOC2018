@@ -15,10 +15,14 @@ if(process.argv[3]) {
     isPartB = process.argv[3].toLowerCase() === 'part2' ||
               process.argv[3].toLowerCase() === 'partb';
 }
+let doVerbose = false;
+if(process.argv.indexOf('visual') >= 0 ) {
+    doVerbose = true;
+}
 term('Running part %s of Day %s\n\n', isPartB?'B':'A', process.argv[2]);
 
 let daySolver = require(folder);
 let start = utils.ms();
-daySolver(isPartB);
+daySolver(isPartB, doVerbose);
 let duration = utils.ms() - start;
 term.green('Ran in %ss, without data loading: %ss\n', duration / 1000, (duration - utils.loadingTime()) / 1000);
