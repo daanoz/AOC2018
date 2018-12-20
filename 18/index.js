@@ -23,21 +23,30 @@ class Cell {
         ].filter(c => !!c);
     }
 
-    countNeighbours(ofState) {
-        return this.neighbours.reduce((curr, n) => n.state === ofState ? curr + 1 : curr, 0);
+    isNeighboursAtLeast(ofState, count) {
+        let found = 0;
+        return this.neighbours.some(n => {
+            if(n.state === ofState) {
+                found++;
+                if(found >= count) {
+                    return true;
+                }
+            }
+            return false;
+        });
     }
 
     findNext() {
+        this.nextState = this.state;
         if(this.state === '.') {
-            if(this.countNeighbours('|') >= 3) { return this.nextState = '|'; }
+            if(this.isNeighboursAtLeast('|', 3)) { this.nextState = '|'; }
         } else if(this.state === '|') {
-            if(this.countNeighbours('#') >= 3) { return this.nextState = '#'; }
+            if(this.isNeighboursAtLeast('#', 3)) { this.nextState = '#'; }
         } else if(this.state === '#') {
-            if(this.countNeighbours('#') < 1 || this.countNeighbours('|') < 1) {
-                return this.nextState = '.';
+            if(!this.isNeighboursAtLeast('#', 1) || !this.isNeighboursAtLeast('|', 1)) {
+                this.nextState = '.';
             }
         }
-        return this.nextState = this.state;
     }
 
     setNext() {
@@ -152,7 +161,7 @@ module.exports = (isPartB, isVisual) => {
             }
             done();
         } else {
-            for(let i = 0; i < 10; i++) {
+            for(let i = 0; i < 10000; i++) {
                 cells.forEach(cell => cell.findNext());
                 cells.forEach(cell => cell.setNext());
             }

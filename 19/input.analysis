@@ -1,0 +1,37 @@
+#ip 1
+addi 1 16 1
+seti 1 2 5
+seti 1 2 2 [2] = 1 // begin here
+mulr 5 2 3 [3] = [5] * [2] // start here
+eqrr 3 4 3 [3] = [3] === [4] /// if equal, 3 = 1
+addr 3 1 1 // skip next if true
+addi 1 1 1 // skip next
+addr 5 0 0 [0] = [5] + [0]
+addi 2 1 2 [2] = [2] + 1
+gtrr 2 4 3 [3] = [2] > [4]
+addr 1 3 1 // skip next if true
+seti 2 8 1 => move to start
+addi 5 1 5 [5] = [5] + 1
+gtrr 5 4 3 [3] = [5] > [4]
+addr 3 1 1 // skip next if true
+seti 1 1 1 // go to begin
+mulr 1 1 1 // die!
+addi 4 2 4  4 = 2
+mulr 4 4 4  4 = 2 * 2 = 4
+mulr 1 4 4  4 = 19 * 4 = 76
+muli 4 11 4  4 = 76 * 11 = 836
+addi 3 3 3  3 = 3
+mulr 3 1 3  3 = 3 * 22 = 66
+addi 3 4 3  3 = 70
+addr 4 3 4  4 = 906
+addr 1 0 1  1 = 25
+seti 0 0 1
+setr 1 5 3
+mulr 3 1 3
+addr 1 3 3
+mulr 1 3 3
+muli 3 14 3
+mulr 3 1 3
+addr 4 3 4
+seti 0 0 0
+seti 0 1 1
