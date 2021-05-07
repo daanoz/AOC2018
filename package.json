@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/daanoz/AOC2018#readme",
   "dependencies": {
-    "lodash": "^4.17.13",
+    "lodash": "^4.17.21",
     "terminal-kit": "^1.14.3"
   }
 }
